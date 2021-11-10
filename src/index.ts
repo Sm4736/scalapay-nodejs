@@ -1,13 +1,17 @@
+/**
+ * This is the entrypoint of the application.
+ * Due to the simplicity of the application, routing is handled here.
+ * Similarly cors is handled without any custom configuration.
+ */
 import * as express from 'express';
 import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
-import {router} from "./apis/getCart";
 
+const cart = require('./apis/get-cart')
 const app = express()
 .use(cors())
 .use(bodyParser.json())
-.use(router);
+// Sets the routing directly to the controller.
+.use('/api/cart', cart);
 
-app.listen(3000, () => {
-    return console.log('Running on port 3000')
-});
+module.exports = app;
