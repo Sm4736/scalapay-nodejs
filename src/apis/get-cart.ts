@@ -2,10 +2,10 @@
  * This file has both the routing and logic for handling the cart GET.
  */
 import {NextFunction, Request, Response, Router} from "express";
-import {getCartRepository} from "../sqlite-connection";
 import express = require("express");
 
 const router = express.Router();
+const createOrder = require('../utils/create-order');
 
 /**
  * Takes an integer and retrieves the cart that belongs to that user.
@@ -14,10 +14,8 @@ const router = express.Router();
  */
 router.get('/:id', async function (req: Request, res: Response, next: NextFunction) {
     try {
-        // Gets the database connection.
-        const repository = await getCartRepository();
-        // Finds a cart that matches the parameter :id and retrieves it, as well as all products that reference it.
-        const cart = await repository.findOne(req.params.id, {relations: ["products"]});
+        // Get the cart details from the database.
+        const cart = await createOrder.getCart(req.params.id);
 
         // If the cart is empty we should just return a 404.
         if (typeof cart !== 'undefined') {

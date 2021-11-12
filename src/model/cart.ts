@@ -21,7 +21,7 @@ export class Cart {
      * The total price of the cart.
      */
     @Column()
-    amount: number;
+    amount: string;
 
     /**
      * The currency code of the total price.

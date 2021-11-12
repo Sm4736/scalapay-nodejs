@@ -28,7 +28,7 @@ __decorate([
 ], Cart.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Cart.prototype, "amount", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

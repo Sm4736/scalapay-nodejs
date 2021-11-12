@@ -8,9 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const sqlite_connection_1 = require("../sqlite-connection");
 const express = require("express");
 const router = express.Router();
+const createOrder = require('../utils/create-order');
 /**
  * Takes an integer and retrieves the cart that belongs to that user.
  *
@@ -19,10 +19,8 @@ const router = express.Router();
 router.get('/:id', function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            // Gets the database connection.
-            const repository = yield (0, sqlite_connection_1.getCartRepository)();
-            // Finds a cart that matches the parameter :id and retrieves it, as well as all products that reference it.
-            const cart = yield repository.findOne(req.params.id, { relations: ["products"] });
+            // Get the cart details from the database.
+            const cart = yield createOrder.getCart(req.params.id);
             // If the cart is empty we should just return a 404.
             if (typeof cart !== 'undefined') {
                 res.send(cart);

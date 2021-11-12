@@ -1,6 +1,7 @@
 # Scalapay Assignment Server
 
-This application accesses a simple sqlite database and serves it via a REST interface.
+This application provides the endpoint for a front end application to access the Scalapay api.
+In addition, it uses a sqlite database to provide persistent cart storage.
 
 Please note: The sqlite database is not copied to the dist folder when building
 and therefore the dist folder is not portable.

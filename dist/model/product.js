@@ -15,8 +15,6 @@ exports.Product = void 0;
  *
  * In this setup a Product is designed to represent an item in the cart,
  * not the canonical product that we would expect to be displayed on a product page.
- * This means that a cart contained two of the same product there would be two separate instances of the product.
- * It works this way for ease of implementation on the front end, we're just assuming 1 quantity of each product.
  */
 const typeorm_1 = require("typeorm");
 const cart_1 = require("./cart");
@@ -40,12 +38,16 @@ __decorate([
 ], Product.prototype, "sku", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Product.prototype, "amount", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Product.prototype, "currency", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Product.prototype, "quantity", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => cart_1.Cart, cart => cart.products),
     __metadata("design:type", cart_1.Cart)

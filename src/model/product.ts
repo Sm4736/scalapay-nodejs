@@ -3,8 +3,6 @@
  *
  * In this setup a Product is designed to represent an item in the cart,
  * not the canonical product that we would expect to be displayed on a product page.
- * This means that a cart contained two of the same product there would be two separate instances of the product.
- * It works this way for ease of implementation on the front end, we're just assuming 1 quantity of each product.
  */
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
 import {Cart} from "./cart";
@@ -36,16 +34,22 @@ export class Product {
     sku: string;
 
     /**
-     * Price of the object stored as an integer.
+     * Price of the object.
      */
     @Column()
-    amount: number;
+    amount: string;
 
     /**
      * The currency code of the price.
      */
     @Column()
     currency: string;
+
+    /**
+     * The quantity of products.
+     */
+    @Column()
+    quantity: number;
 
     /**
      * The cart that this product belongs to.
