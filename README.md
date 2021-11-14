@@ -7,8 +7,10 @@ Please note: The sqlite database is not copied to the dist folder when building
 and therefore the dist folder is not portable.
 
 ### Building the application
+Run ```npm install```
+
 For convenience, I have included the prebuilt `dist` folder,
-but to build it yourself with
+but you can build it yourself with
 
 ```npx tsc```
 
